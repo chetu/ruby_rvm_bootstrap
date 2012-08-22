@@ -37,7 +37,7 @@ end
 
 def bootstrap
 	ubuntu_deps = 'sudo apt-get -y install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion'
-  rhel_deps = 'sudo yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel'
+  rhel_deps = 'sudo yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel git curl curl-devel'
   rvm_install = 'curl -L https://get.rvm.io | bash -s stable --ruby'
   if @os_type == "ubuntu"
    p "Running Bootstrap For  #{@os_type} Not Working In Progress"
