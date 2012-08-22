@@ -1,0 +1,8 @@
+config:
+ mod_name: "my_server"
+ uname: "deploy"
+ ip: "192.168.3.165" 
+ pass: "password"
+bootstrap:
+ os_type: "rhel" # ubuntu sudo problem will be done asap
+ 
