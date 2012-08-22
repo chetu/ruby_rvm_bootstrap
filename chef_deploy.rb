@@ -52,15 +52,16 @@ def bootstrap
           if success
             ch.exec "#{rhel_deps} && #{rvm_install}"
             ch.on_data do |ch , data|
-             data.inspect
-             if data.inspect.include? "[sudo]"
-               channel.send_data("#{@pass}\n")
-               sleep 0.1
-             end
-             if data.inspect.include? "\'q\'"
-               channel.send_data("q")
-               sleep 0.1
-             end
+		data.inspect
+        	 if data.inspect.include? "[sudo]"
+		 channel.send_data("#{@pass}\n")
+          	   sleep 0.1
+        	 elsif data.inspect.include? "Password:"
+	  	 channel.send_data("#{@pass}\n")	 
+		 elsif data.inspect.include? "\'q\'"
+                 channel.send_data("q")
+                   sleep 0.1
+                 end
 
              puts data
              ch.wait
