@@ -16,30 +16,30 @@ class AutoDeploy
  def initialize(config_name,deploy_mode)
   @config_name = config_name
   @deploy_mode = deploy_mode
-end
+ end
 
-def read_config
- config = YAML.load_file("#{@config_name}")
- @uname = config["config"]["uname"]
- @ip = config["config"]["ip"]
- @pass = config["config"]["pass"]
- @filename = config["config"]["filename"]
- @mod_name = config["config"]["mod_name"]
- @run_program = config["config"]["run_program"]
- @remote_webapps_path= config["config"]["remote_webapps_path"]
-end
+ def read_config
+  config = YAML.load_file("#{@config_name}")
+  @uname = config["config"]["uname"]
+  @ip = config["config"]["ip"]
+  @pass = config["config"]["pass"]
+  @filename = config["config"]["filename"]
+  @mod_name = config["config"]["mod_name"]
+  @run_program = config["config"]["run_program"]
+  @remote_webapps_path= config["config"]["remote_webapps_path"]
+ end
 
-def read_bootstrap
- config = YAML.load_file("#{@config_name}")
- @os_type = config["bootstrap"]["os_type"]
-end	
+ def read_bootstrap
+  config = YAML.load_file("#{@config_name}")
+  @os_type = config["bootstrap"]["os_type"]
+ end	
 
 
-def bootstrap
+ def bootstrap
 	ubuntu_deps = 'sudo apt-get -y install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion'
   rhel_deps = 'sudo yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel git curl curl-devel'
 # rhel 6 is latest removing support for 5.X bash 4.1.1 required  
-  rvm_install = 'curl -L https://get.rvm.io | bash -s stable --ruby'
+  rvm_install = ' gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && curl -L https://get.rvm.io | bash -s stable --ruby'
   if @os_type == "ubuntu"
    p "Running Bootstrap For  #{@os_type} Not Working In Progress"
        	    #Net::SSH.start("#{@ip}", "#{@uname}", :password => "#{@pass}" )  do |ssh|
